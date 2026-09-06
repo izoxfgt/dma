@@ -177,10 +177,10 @@ async def send_message(
 
 # ── Slash command /purchase ───────────────────────────────────
 # Émojis custom du serveur
-EMOJI_CARD = "<:card:1545508820128759949>"
-EMOJI_LTC = "<:ltc:1545505441252114493>"
-EMOJI_BTC = "<:btc:1545505457395863562>"
-EMOJI_PAYPAL = "<:paypal:1545505473485082745>"
+EMOJI_CARD = "<:card:1546168766868488303>"
+EMOJI_LTC = "<:ltc:1546168778633646240>"
+EMOJI_BTC = "<:btc:1546168790750994512>"
+EMOJI_PAYPAL = "<:paypal:1546168804650917998>"
 EMOJI_INFO = "<:info:1545513227675500544>"
 EMOJI_PRICE = "<:price:1545513208725639329>"
 
@@ -207,8 +207,7 @@ async def purchase(interaction: discord.Interaction, salon: discord.TextChannel 
                 f"# {EMOJI_LTC} Ltc\n\n"
                 f"# {EMOJI_BTC} Btc\n\n"
                 f"# {EMOJI_PAYPAL} PayPal\n\n"
-                "──────────────────────\n\n"
-                f"To purchase, please open a ticket in <#{TICKET_CHANNEL_ID}>."
+                "──────────────────────"
             ),
             color=EMBED_COLOR
         )
