@@ -655,32 +655,58 @@ async def send_reglement(interaction: discord.Interaction, salon: discord.TextCh
 
     embed = discord.Embed(
         title=f"📋 SERVER RULES — {BRAND_NAME.upper()}",
+        description=(
+            f"Welcome to **{BRAND_NAME}**.\n"
+            "Please read the following rules carefully before participating in the server. "
+            "By staying here, you agree to comply with them at all times.\n"
+            "──────────────────────────────────────────"
+        ),
         color=EMBED_COLOR
     )
 
-    embed.add_field(name="【 1 】 Mutual Respect", value=(
-        "Respect is mandatory towards all members and staff. "
-        "Insults, mockery and toxic behavior are strictly forbidden and will result in an immediate sanction."
+    embed.add_field(name="【 1 】 🤝 Mutual Respect", value=(
+        "All members and staff must be treated with respect at all times.\n"
+        "Insults, harassment, discriminatory remarks, and toxic behavior of any kind "
+        "will not be tolerated and may result in immediate action."
     ), inline=False)
 
-    embed.add_field(name="【 2 】 Spam & Advertising", value=(
-        "Spam and unauthorized advertising are forbidden. "
-        "Any link to another server will result in a permanent ban."
+    embed.add_field(name="【 2 】 🚫 Spam & Advertising", value=(
+        "Spamming, flooding, or excessive use of caps is prohibited.\n"
+        "Unauthorized advertising — including invite links, external servers, or promotions — "
+        "will result in a **permanent ban**."
     ), inline=False)
 
-    embed.add_field(name="【 3 】 Staff", value=(
-        "Staff decisions are final. In case of a dispute, "
-        "please contact a staff member privately and calmly."
+    embed.add_field(name="【 3 】 🔞 Appropriate Content", value=(
+        "NSFW, shocking, violent, or illegal content is strictly forbidden — "
+        "in messages, media, usernames, or profile pictures."
     ), inline=False)
 
-    embed.add_field(name="【 4 】 Sanctions", value=(
-        "Depending on the severity:\n"
-        "⚠️ Warning → 🔇 Mute → 👢 Kick → 🔨 Permanent Ban"
+    embed.add_field(name="【 4 】 🎫 Tickets & Purchases", value=(
+        "Tickets are reserved for legitimate requests only (support, purchases, HWID resets).\n"
+        "Please avoid spamming or pinging staff — a team member will assist you as soon as possible.\n"
+        "Any attempt at fraud or chargeback will result in a permanent ban."
+    ), inline=False)
+
+    embed.add_field(name="【 5 】 🔒 Security", value=(
+        "Never share personal information, passwords, or payment details.\n"
+        "Staff will **never** ask for your credentials in DMs."
+    ), inline=False)
+
+    embed.add_field(name="【 6 】 🛡️ Staff Authority", value=(
+        "Staff decisions are final.\n"
+        "If you disagree with a decision, contact a staff member privately and respectfully via a ticket — "
+        "public disputes will not be tolerated."
+    ), inline=False)
+
+    embed.add_field(name="【 7 】 ⚖️ Sanctions", value=(
+        "Depending on the severity of the offense:\n"
+        "⚠️ Warning → 🔇 Mute → 👢 Kick → 🔨 Permanent Ban\n"
+        "Staff reserves the right to adjust sanctions based on context and severity."
     ), inline=False)
 
     embed.add_field(name="\u200b", value="──────────────────────────────────────────", inline=False)
 
-    embed.set_footer(text=f"{BRAND_NAME} | Règlement • By accepting, you agree to follow these rules.")
+    embed.set_footer(text=f"{BRAND_NAME} | Rules • By accepting, you agree to follow these rules.")
 
     try:
         file = discord.File("banner.png", filename="banner.png")
