@@ -296,16 +296,9 @@ async def woofer(interaction: discord.Interaction, salon: discord.TextChannel = 
                 "With the Manual Woofer, you can play in competitive / tournaments without any issue.\n\n"
                 "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 "# Compatibility\n\n"
-                "## <:emoji:1546169899007873034> AMD <:emoji:1545574263115874304>\n\n"
-                "## <:emoji:1546169899007873034> Intel <:emoji:1545574263115874304>\n\n"
-                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
-                "# How does it work?\n\n"
-                "① Open a ticket on Discord\n"
-                "② Choose your offer\n"
-                "③ Complete the payment\n"
-                "④ Receive your installation instructions\n\n"
-                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
-                f"To purchase, please open a ticket in <#{TICKET_CHANNEL_ID}>."
+                "## AMD\n\n"
+                "## Intel\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
             ),
             color=EMBED_COLOR
         )
