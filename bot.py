@@ -326,7 +326,11 @@ async def woofer(interaction: discord.Interaction, salon: discord.TextChannel = 
 
 
 # ── Slash command /status_fw ─────────────────────────────────────
-FW_STATUS_CHANNEL_IDS = [1546152732120059918, 1546152732120059919, 1546152732120059920]
+FW_STATUS_CHANNELS = [
+    (1546152732120059918, "Undetected since 7 months"),
+    (1546152732120059919, "Undetected since 7 months"),
+    (1546152732120059920, "Undetected since 1 year+"),
+]
 
 @bot.tree.command(name="status_fw", description="Affiche le statut en temps réel du Firmware")
 @app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
@@ -337,7 +341,7 @@ async def status_fw(interaction: discord.Interaction, salon: discord.TextChannel
 
     target = salon or interaction.channel
 
-    lines = "\n\n".join(f"<#{cid}> | 🟢 | `Undetected`" for cid in FW_STATUS_CHANNEL_IDS)
+    lines = "\n\n".join(f"<#{cid}> | 🟢 | `{label}`" for cid, label in FW_STATUS_CHANNELS)
     embed = discord.Embed(
         description=(
             "# GardeDMA | Firmware Status\n\n"
@@ -858,22 +862,34 @@ class TicketSelect(discord.ui.Select):
     def __init__(self):
         options = [
             discord.SelectOption(
-                label="Solace | General Support",
+                label="GardeDMA | General Support",
                 description="For general support concerns.",
-                emoji="✨",
+                emoji="🟢",
                 value="general"
             ),
             discord.SelectOption(
-                label="Solace | Product Support",
-                description="For paid product issues or concerns.",
-                emoji="⚙️",
-                value="product"
+                label="GardeDMA | FW Support",
+                description="For Firmware issues or concerns.",
+                emoji="🟢",
+                value="fw"
             ),
             discord.SelectOption(
-                label="Solace | HWID Reset Support",
-                description="For HWID reset requests.",
-                emoji="🖥️",
-                value="hwid"
+                label="GardeDMA | RDMA Support",
+                description="For RDMA issues or concerns.",
+                emoji="🟢",
+                value="rdma"
+            ),
+            discord.SelectOption(
+                label="GardeDMA | Woofer Support",
+                description="For Woofer issues or concerns.",
+                emoji="🟢",
+                value="woofer"
+            ),
+            discord.SelectOption(
+                label="GardeDMA | FN Account Support",
+                description="For FN Account issues or concerns.",
+                emoji="🟢",
+                value="fn_account"
             ),
         ]
         super().__init__(
@@ -891,9 +907,11 @@ class TicketSelect(discord.ui.Select):
 
         # Labels et descriptions selon le type
         type_labels = {
-            "general": ("Solace | General Support",     "✨"),
-            "product": ("Solace | Product Support",      "⚙️"),
-            "hwid":    ("Solace | HWID Reset Support",   "🖥️"),
+            "general":    ("GardeDMA | General Support",     "🟢"),
+            "fw":         ("GardeDMA | FW Support",           "🟢"),
+            "rdma":       ("GardeDMA | RDMA Support",         "🟢"),
+            "woofer":     ("GardeDMA | Woofer Support",       "🟢"),
+            "fn_account": ("GardeDMA | FN Account Support",   "🟢"),
         }
         label, emoji = type_labels[ticket_type]
 
@@ -930,9 +948,11 @@ class TicketSelect(discord.ui.Select):
 
         # Nom du channel selon le type choisi
         type_channel_prefix = {
-            "general": "general-support",
-            "product": "product-support",
-            "hwid":    "hwid-reset",
+            "general":    "general-support",
+            "fw":         "fw-support",
+            "rdma":       "rdma-support",
+            "woofer":     "woofer-support",
+            "fn_account": "fn-account-support",
         }
         channel_name = f"{type_channel_prefix[ticket_type]}-{user.name.lower()}"
         ticket_channel = await guild.create_text_channel(
@@ -999,9 +1019,11 @@ async def send_ticket_panel(interaction: discord.Interaction, salon: discord.Tex
             "Select the category that best matches your request from the menu below "
             "to open a private ticket with our team.\n\n"
             "──────────────────────\n\n"
-            "✨ **General Support** — General questions or concerns\n"
-            "⚙️ **Product Support** — Issues with a purchased product\n"
-            "🖥️ **HWID Reset** — Request a hardware ID reset\n\n"
+            "🟢 **General Support** — General questions or concerns\n"
+            "🟢 **FW Support** — Firmware issues or concerns\n"
+            "🟢 **RDMA Support** — RDMA issues or concerns\n"
+            "🟢 **Woofer Support** — Woofer issues or concerns\n"
+            "🟢 **FN Account Support** — FN Account issues or concerns\n\n"
             "──────────────────────\n\n"
             "Please only open one ticket at a time and avoid pinging staff — "
             "a team member will be with you shortly."
