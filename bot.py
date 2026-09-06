@@ -197,7 +197,7 @@ async def purchase(interaction: discord.Interaction, salon: discord.TextChannel 
     target = salon or interaction.channel
 
     try:
-        file = discord.File("purchase_banner.png", filename="purchase_banner.png")
+        file = discord.File("banner.png", filename="banner.png")
 
         embed = discord.Embed(
             description=(
@@ -212,7 +212,7 @@ async def purchase(interaction: discord.Interaction, salon: discord.TextChannel 
             ),
             color=EMBED_COLOR
         )
-        embed.set_image(url="attachment://purchase_banner.png")
+        embed.set_image(url="attachment://banner.png")
         embed.set_footer(text=BRAND_FOOTER)
 
         await target.send(embed=embed, file=file)
@@ -220,7 +220,7 @@ async def purchase(interaction: discord.Interaction, salon: discord.TextChannel 
 
     except FileNotFoundError:
         await interaction.response.send_message(
-            "❌ Le fichier `purchase_banner.png` est introuvable. "
+            "❌ Le fichier `banner.png` est introuvable. "
             "Vérifie qu'il est bien à la racine du repo, au même endroit que `bot.py`.",
             ephemeral=True
         )
@@ -239,7 +239,7 @@ async def chaise(interaction: discord.Interaction, salon: discord.TextChannel = 
     target = salon or interaction.channel
 
     try:
-        file = discord.File("purchase_banner.png", filename="purchase_banner.png")
+        file = discord.File("banner.png", filename="banner.png")
 
         embed = discord.Embed(
             description=(
@@ -260,7 +260,7 @@ async def chaise(interaction: discord.Interaction, salon: discord.TextChannel = 
             ),
             color=EMBED_COLOR
         )
-        embed.set_image(url="attachment://purchase_banner.png")
+        embed.set_image(url="attachment://banner.png")
         embed.set_footer(text=BRAND_FOOTER)
 
         await target.send(embed=embed, file=file)
@@ -268,7 +268,7 @@ async def chaise(interaction: discord.Interaction, salon: discord.TextChannel = 
 
     except FileNotFoundError:
         await interaction.response.send_message(
-            "❌ Le fichier `purchase_banner.png` est introuvable. "
+            "❌ Le fichier `banner.png` est introuvable. "
             "Vérifie qu'il est bien à la racine du repo, au même endroit que `bot.py`.",
             ephemeral=True
         )
@@ -287,7 +287,7 @@ async def woofer(interaction: discord.Interaction, salon: discord.TextChannel = 
     target = salon or interaction.channel
 
     try:
-        file = discord.File("woofer_banner.png", filename="woofer_banner.png")
+        file = discord.File("banner.png", filename="banner.png")
 
         embed = discord.Embed(
             description=(
@@ -309,7 +309,7 @@ async def woofer(interaction: discord.Interaction, salon: discord.TextChannel = 
             ),
             color=EMBED_COLOR
         )
-        embed.set_image(url="attachment://woofer_banner.png")
+        embed.set_image(url="attachment://banner.png")
         embed.set_footer(text=BRAND_FOOTER)
 
         await target.send(embed=embed, file=file)
@@ -317,7 +317,7 @@ async def woofer(interaction: discord.Interaction, salon: discord.TextChannel = 
 
     except FileNotFoundError:
         await interaction.response.send_message(
-            "❌ Le fichier `woofer_banner.png` est introuvable. "
+            "❌ Le fichier `banner.png` est introuvable. "
             "Vérifie qu'il est bien à la racine du repo, au même endroit que `bot.py`.",
             ephemeral=True
         )
@@ -417,7 +417,7 @@ async def account(interaction: discord.Interaction, salon: discord.TextChannel =
     target = salon or interaction.channel
 
     try:
-        file = discord.File("account_banner.png", filename="account_banner.png")
+        file = discord.File("banner.png", filename="banner.png")
 
         embed = discord.Embed(
             description=(
@@ -433,7 +433,7 @@ async def account(interaction: discord.Interaction, salon: discord.TextChannel =
             ),
             color=EMBED_COLOR
         )
-        embed.set_image(url="attachment://account_banner.png")
+        embed.set_image(url="attachment://banner.png")
         embed.set_footer(text=BRAND_FOOTER)
 
         await target.send(embed=embed, file=file)
@@ -441,7 +441,7 @@ async def account(interaction: discord.Interaction, salon: discord.TextChannel =
 
     except FileNotFoundError:
         await interaction.response.send_message(
-            "❌ Le fichier `account_banner.png` est introuvable. "
+            "❌ Le fichier `banner.png` est introuvable. "
             "Vérifie qu'il est bien à la racine du repo, au même endroit que `bot.py`.",
             ephemeral=True
         )
@@ -946,9 +946,12 @@ class TicketSelect(discord.ui.Select):
         embed = discord.Embed(
             title=f"{emoji} {label}",
             description=(
-                f"Hey {user.mention}, thank you for opening a ticket!\n\n"
-                "A staff member will assist you as soon as possible.\n"
-                "Please **do not spam** or ping the staff — we'll be with you shortly."
+                f"Welcome, {user.mention}! Thank you for reaching out.\n\n"
+                "Please describe your request in as much detail as possible — "
+                "a staff member will be with you shortly.\n\n"
+                "──────────────────────\n\n"
+                "⏳ Kindly avoid spamming or pinging staff, it won't speed things up.\n"
+                "🔒 Once your request is resolved, staff can close this ticket."
             ),
             color=TICKET_COLOR
         )
@@ -966,7 +969,7 @@ class TicketSelect(discord.ui.Select):
         )
 
         await interaction.response.send_message(
-            f"✅ Ton ticket a été créé : {ticket_channel.mention}",
+            f"✅ Your ticket has been created: {ticket_channel.mention}",
             ephemeral=True
         )
 
@@ -990,10 +993,18 @@ async def send_ticket_panel(interaction: discord.Interaction, salon: discord.Tex
     target = salon or interaction.channel
 
     embed = discord.Embed(
-        title=f"{BRAND_NAME} | Tickets",
+        title=f"🎫 {BRAND_NAME} — Support Tickets",
         description=(
-            "Need help? Open a ticket and select the right option based on your request.\n\n"
-            "Our team will get back to you as soon as possible."
+            "Welcome to our support center.\n\n"
+            "Select the category that best matches your request from the menu below "
+            "to open a private ticket with our team.\n\n"
+            "──────────────────────\n\n"
+            "✨ **General Support** — General questions or concerns\n"
+            "⚙️ **Product Support** — Issues with a purchased product\n"
+            "🖥️ **HWID Reset** — Request a hardware ID reset\n\n"
+            "──────────────────────\n\n"
+            "Please only open one ticket at a time and avoid pinging staff — "
+            "a team member will be with you shortly."
         ),
         color=TICKET_COLOR
     )
@@ -1004,22 +1015,22 @@ async def send_ticket_panel(interaction: discord.Interaction, salon: discord.Tex
         embed.set_image(url="attachment://banner.png")
         await target.send(embed=embed, file=file, view=TicketView())
         await interaction.response.send_message(
-            f"✅ Panel de tickets envoyé dans {target.mention} !", ephemeral=True
+            f"✅ Ticket panel sent in {target.mention} !", ephemeral=True
         )
     except FileNotFoundError:
         await target.send(embed=embed, view=TicketView())
         await interaction.response.send_message(
-            f"✅ Panel de tickets envoyé dans {target.mention} (sans image — `banner.png` introuvable) !",
+            f"✅ Ticket panel sent in {target.mention} (no image — `banner.png` not found) !",
             ephemeral=True
         )
     except discord.Forbidden:
         await interaction.response.send_message(
-            f"❌ Je n'ai pas la permission d'envoyer des messages dans {target.mention}. "
-            "Vérifie mes permissions sur ce salon (Voir le salon / Envoyer des messages / Intégrer des liens).",
+            f"❌ I don't have permission to send messages in {target.mention}. "
+            "Check my permissions in this channel (View Channel / Send Messages / Embed Links).",
             ephemeral=True
         )
     except Exception as e:
-        await interaction.response.send_message(f"❌ Erreur : `{e}`", ephemeral=True)
+        await interaction.response.send_message(f"❌ Error: `{e}`", ephemeral=True)
 
 
 # ── Démarrage ────────────────────────────────────────────────
