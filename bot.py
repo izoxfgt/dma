@@ -202,12 +202,12 @@ async def purchase(interaction: discord.Interaction, salon: discord.TextChannel 
         embed = discord.Embed(
             description=(
                 "# Payment methods:\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 f"# {EMOJI_CARD} Credit Card\n\n"
                 f"# {EMOJI_LTC} Ltc\n\n"
                 f"# {EMOJI_BTC} Btc\n\n"
                 f"# {EMOJI_PAYPAL} PayPal\n\n"
-                "──────────────────────"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
             ),
             color=EMBED_COLOR
         )
@@ -248,13 +248,13 @@ async def chaise(interaction: discord.Interaction, salon: discord.TextChannel = 
                 "• Safe & Undetected\n"
                 "• Supports Windows 10 & 11 (24H2 & 25H2)\n"
                 "• Supports All CPUs & GPUs\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 f"# {EMOJI_PRICE} Price\n\n"
                 "**3 Days — $9,99**\n"
                 "**1 Week — $19,99**\n"
                 "**1 Month — $49.99**\n"
                 "**3 Month — $99,99**\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 f"To purchase, please open a ticket in <#{TICKET_CHANNEL_ID}>."
             ),
             color=EMBED_COLOR
@@ -291,19 +291,19 @@ async def woofer(interaction: discord.Interaction, salon: discord.TextChannel = 
         embed = discord.Embed(
             description=(
                 "# WOOFER — PRICING\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 "## <:emoji:1545573618652549171> Spoofer | One Time — 25€\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 "# Compatibility\n\n"
                 "## <:emoji:1545573618652549171> AMD <:emoji:1545574263115874304>\n\n"
                 "## <:emoji:1545573618652549171> Intel <:emoji:1545574263115874304>\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 "# How does it work?\n\n"
                 "① Open a ticket on Discord\n"
                 "② Choose your offer\n"
                 "③ Complete the payment\n"
                 "④ Receive your installation instructions\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 f"To purchase, please open a ticket in <#{TICKET_CHANNEL_ID}>."
             ),
             color=EMBED_COLOR
@@ -425,13 +425,14 @@ async def account(interaction: discord.Interaction, salon: discord.TextChannel =
         embed = discord.Embed(
             description=(
                 "# FN ACCOUNT\n\n"
-                "──────────────────────\n\n"
-                "## <:emoji:1545573618652549171> **FA ACCOUNT (FREE ACCES)**\n\n"
-                "Accounts with access to the associated email address.\n\n"
-                "──────────────────────\n\n"
-                "## <:emoji:1545573618652549171> **NFA ACCOUNT (NO FREE ACCES)**\n\n"
-                "Accounts with no access to the associated email address.\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                "## <:emoji:1546169899007873034> **FA ACCOUNT (FULL ACCESS)**\n\n"
+                "Full access accounts, including access to competitive.\n"
+                "Some accounts may also come with 14 Cups.\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                "## <:emoji:1546169899007873034> **NFA ACCOUNT (NO FULL ACCESS)**\n\n"
+                "Accounts without access to the linked email — in-game access only.\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 f"To purchase, please open a ticket in <#{TICKET_CHANNEL_ID}>."
             ),
             color=EMBED_COLOR
@@ -465,7 +466,7 @@ async def guide_en(interaction: discord.Interaction, salon: discord.TextChannel 
     embed = discord.Embed(
         description=(
             "# GUIDE | FN EXTERNAL 🇬🇧\n\n"
-            "──────────────────────\n\n"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
             "① Download and install the **SteelSeries GG** application.\n\n"
             "② Enable **SteelSeries GG**.\n\n"
             "③ Temporarily disable your **antivirus**.\n\n"
@@ -476,7 +477,7 @@ async def guide_en(interaction: discord.Interaction, salon: discord.TextChannel 
             "⑧ Enable **Moment**.\n\n"
             "⑨ Press **Alt + P**.\n\n"
             "⑩ Press **OK** on the software, then launch **Fortnite**, and once in the menu, press **OK**.\n\n"
-            "──────────────────────\n\n"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
             "⚠️ It is **highly recommended** to keep the **\"Stream Proof\"** option enabled at all times."
         ),
         color=EMBED_COLOR
@@ -500,7 +501,7 @@ async def guide_fr(interaction: discord.Interaction, salon: discord.TextChannel 
     embed = discord.Embed(
         description=(
             "# GUIDE | FN EXTERNAL 🇫🇷\n\n"
-            "──────────────────────\n\n"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
             "① Télécharge et installe l'application **SteelSeries GG**.\n\n"
             "② Active **SteelSeries GG**.\n\n"
             "③ Désactive temporairement ton **antivirus**.\n\n"
@@ -511,7 +512,7 @@ async def guide_fr(interaction: discord.Interaction, salon: discord.TextChannel 
             "⑧ Active **Moment**.\n\n"
             "⑨ Fais **Alt + P**.\n\n"
             "⑩ Appuie sur **OK** sur le logiciel, puis lance **Fortnite**, et une fois dans le menu, fais **OK**.\n\n"
-            "──────────────────────\n\n"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
             "⚠️ Il est **fortement recommandé** de garder l'option **\"Stream Proof\"** activée en permanence."
         ),
         color=EMBED_COLOR
@@ -718,7 +719,7 @@ async def send_reglement(interaction: discord.Interaction, salon: discord.TextCh
             f"Welcome to **{BRAND_NAME}**.\n"
             "Please read the following rules carefully before participating in the server. "
             "By staying here, you agree to comply with them at all times.\n"
-            "──────────────────────────────────────────"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
         ),
         color=EMBED_COLOR
     )
@@ -763,7 +764,7 @@ async def send_reglement(interaction: discord.Interaction, salon: discord.TextCh
         "Staff reserves the right to adjust sanctions based on context and severity."
     ), inline=False)
 
-    embed.add_field(name="\u200b", value="──────────────────────────────────────────", inline=False)
+    embed.add_field(name="\u200b", value="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", inline=False)
 
     embed.set_footer(text=f"{BRAND_NAME} | Rules • By accepting, you agree to follow these rules.")
 
@@ -968,7 +969,7 @@ class TicketSelect(discord.ui.Select):
                 f"Welcome, {user.mention}! Thank you for reaching out.\n\n"
                 "Please describe your request in as much detail as possible — "
                 "a staff member will be with you shortly.\n\n"
-                "──────────────────────\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
                 "⏳ Kindly avoid spamming or pinging staff, it won't speed things up.\n"
                 "🔒 Once your request is resolved, staff can close this ticket."
             ),
@@ -1017,13 +1018,13 @@ async def send_ticket_panel(interaction: discord.Interaction, salon: discord.Tex
             "Welcome to our support center.\n\n"
             "Select the category that best matches your request from the menu below "
             "to open a private ticket with our team.\n\n"
-            "──────────────────────\n\n"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
             "🟢 **General Support** — General questions or concerns\n"
             "🟢 **FW Support** — Firmware issues or concerns\n"
             "🟢 **RDMA Support** — RDMA issues or concerns\n"
             "🟢 **Woofer Support** — Woofer issues or concerns\n"
             "🟢 **FN Account Support** — FN Account issues or concerns\n\n"
-            "──────────────────────\n\n"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
             "Please only open one ticket at a time and avoid pinging staff — "
             "a team member will be with you shortly."
         ),
