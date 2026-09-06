@@ -325,22 +325,78 @@ async def woofer(interaction: discord.Interaction, salon: discord.TextChannel = 
         await interaction.response.send_message(f"❌ Erreur : `{e}`", ephemeral=True)
 
 
-# ── Slash command /status ────────────────────────────────────────
-@bot.tree.command(name="status", description="Affiche le statut en temps réel de GardeDMA")
+# ── Slash command /status_fw ─────────────────────────────────────
+FW_STATUS_CHANNEL_IDS = [1546152732120059918, 1546152732120059919, 1546152732120059920]
+
+@bot.tree.command(name="status_fw", description="Affiche le statut en temps réel du Firmware")
 @app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
-async def status(interaction: discord.Interaction, salon: discord.TextChannel = None):
+async def status_fw(interaction: discord.Interaction, salon: discord.TextChannel = None):
     if not interaction.user.guild_permissions.administrator:
         await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
         return
 
     target = salon or interaction.channel
 
+    lines = "\n\n".join(f"<#{cid}> | 🟢 | `Undetected`" for cid in FW_STATUS_CHANNEL_IDS)
     embed = discord.Embed(
         description=(
-            "# GardeDMA | Status\n\n"
+            "# GardeDMA | Firmware Status\n\n"
             "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
-            "<#1494489009852780554> | 🟢 | `Undetected`\n\n"
-            "<#1492677345000030400> | 🟢 | `Undetected`"
+            f"{lines}"
+        ),
+        color=EMBED_COLOR
+    )
+    embed.set_footer(text=BRAND_FOOTER)
+
+    await target.send(embed=embed)
+    await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
+
+
+# ── Slash command /status_rdma ───────────────────────────────────
+RDMA_STATUS_CHANNEL_IDS = [1546155810516762804]
+
+@bot.tree.command(name="status_rdma", description="Affiche le statut en temps réel du RDMA")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def status_rdma(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    lines = "\n\n".join(f"<#{cid}> | 🟢 | `Undetected`" for cid in RDMA_STATUS_CHANNEL_IDS)
+    embed = discord.Embed(
+        description=(
+            "# GardeDMA | RDMA Status\n\n"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+            f"{lines}"
+        ),
+        color=EMBED_COLOR
+    )
+    embed.set_footer(text=BRAND_FOOTER)
+
+    await target.send(embed=embed)
+    await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
+
+
+# ── Slash command /status_woofer ─────────────────────────────────
+WOOFER_STATUS_CHANNEL_IDS = [1546164953097052200]
+
+@bot.tree.command(name="status_woofer", description="Affiche le statut en temps réel du Manual Woofer")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def status_woofer(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    lines = "\n\n".join(f"<#{cid}> | 🟢 | `Undetected`" for cid in WOOFER_STATUS_CHANNEL_IDS)
+    embed = discord.Embed(
+        description=(
+            "# GardeDMA | Manual Woofer Status\n\n"
+            "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+            f"{lines}"
         ),
         color=EMBED_COLOR
     )
