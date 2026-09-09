@@ -318,6 +318,55 @@ async def woofer(interaction: discord.Interaction, salon: discord.TextChannel = 
         await interaction.response.send_message(f"❌ Erreur : `{e}`", ephemeral=True)
 
 
+# ── Slash command /fw_private ────────────────────────────────────
+@bot.tree.command(name="fw_private", description="Affiche les infos et prix du Firmware PRIVATE")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def fw_private(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    try:
+        file = discord.File("banner.png", filename="banner.png")
+
+        embed = discord.Embed(
+            description=(
+                "# Firmware PRIVATE\n\n"
+                "**Features**\n"
+                "• Supports DMA cards (75T & 100T)\n"
+                "• All Motherboards Supported\n"
+                "• Intel Required For Vgk\n"
+                "• IOMMU/VT-D Enabled\n"
+                "• Perfect Admin Submission/Completion Queue (ASQ/ ACQ) handling. Flawlessly interacts with the native Microsoft stornvme.sys driver, neutralizing any direct storage stack probes\n\n"
+                "**Supported AC's**\n"
+                "• Valorant • BattlEye • Easy Anti-Cheat • FACEIT • EA\n\n"
+                "**Warranty info:**\n"
+                "• This firmware comes with a free 2-month warranty\n"
+                "• Longer warranty can be discussed in ticket\n\n"
+                "**Price**\n"
+                "💰 **$450**\n\n"
+                f"To purchase, please open a ticket in <#{TICKET_CHANNEL_ID}>."
+            ),
+            color=EMBED_COLOR
+        )
+        embed.set_image(url="attachment://banner.png")
+        embed.set_footer(text=BRAND_FOOTER)
+
+        await target.send(embed=embed, file=file)
+        await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
+
+    except FileNotFoundError:
+        await interaction.response.send_message(
+            "❌ Le fichier `banner.png` est introuvable. "
+            "Vérifie qu'il est bien à la racine du repo, au même endroit que `bot.py`.",
+            ephemeral=True
+        )
+    except Exception as e:
+        await interaction.response.send_message(f"❌ Erreur : `{e}`", ephemeral=True)
+
+
 # ── Slash command /status_fw ─────────────────────────────────────
 FW_STATUS_CHANNELS = [
     (1546152732120059918, "Undetected since 7 months"),
