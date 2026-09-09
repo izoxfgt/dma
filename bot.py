@@ -186,6 +186,9 @@ EMOJI_PRICE = "<:price:1545513208725639329>"
 
 # ID du salon #tickets (utilisé par /purchase et /chaise)
 TICKET_CHANNEL_ID = 1480018356261355611
+# Salons tickets / payments pour les embeds produits
+PRODUCT_TICKET_CHANNEL_ID = 1546152731679522884
+PRODUCT_PAYMENT_CHANNEL_ID = 1546152731679522881
 
 @bot.tree.command(name="purchase", description="Displays the payment methods and how to purchase")
 @app_commands.describe(salon="Channel to send the message in (leave empty = current channel)")
@@ -333,21 +336,187 @@ async def fw_private(interaction: discord.Interaction, salon: discord.TextChanne
 
         embed = discord.Embed(
             description=(
-                "# Firmware PRIVATE\n\n"
-                "**Features**\n"
-                "• Supports DMA cards (75T & 100T)\n"
-                "• All Motherboards Supported\n"
-                "• Intel Required For Vgk\n"
-                "• IOMMU/VT-D Enabled\n"
-                "• Perfect Admin Submission/Completion Queue (ASQ/ ACQ) handling. Flawlessly interacts with the native Microsoft stornvme.sys driver, neutralizing any direct storage stack probes\n\n"
-                "**Supported AC's**\n"
-                "• Valorant • BattlEye • Easy Anti-Cheat • FACEIT • EA\n\n"
-                "**Warranty info:**\n"
-                "• This firmware comes with a free 2-month warranty\n"
-                "• Longer warranty can be discussed in ticket\n\n"
-                "**Price**\n"
-                "💰 **$450**\n\n"
-                f"To purchase, please open a ticket in <#{TICKET_CHANNEL_ID}>."
+                "# GardeDMA | Firmware Private\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Features\n"
+                "• Compatible with DMA 75T & 100T\n"
+                "• Works on all motherboards\n"
+                "• IOMMU / VT-d required\n"
+                "• Intel CPU required for Vanguard\n"
+                "• Clean ASQ / ACQ handling\n"
+                "• Fully compatible with Microsoft stornvme.sys\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Supported Anti-Cheats\n"
+                "Valorant • BattlEye • EAC • FACEIT • EA\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_PRICE} Pricing\n\n"
+                "**Lifetime — $350**\n"
+                "• 2 months warranty included\n"
+                "• Extended warranty available on request\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"<#{PRODUCT_TICKET_CHANNEL_ID}>  •  <#{PRODUCT_PAYMENT_CHANNEL_ID}>"
+            ),
+            color=EMBED_COLOR
+        )
+        embed.set_image(url="attachment://banner.png")
+        embed.set_footer(text=BRAND_FOOTER)
+
+        await target.send(embed=embed, file=file)
+        await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
+
+    except FileNotFoundError:
+        await interaction.response.send_message(
+            "❌ Le fichier `banner.png` est introuvable. "
+            "Vérifie qu'il est bien à la racine du repo, au même endroit que `bot.py`.",
+            ephemeral=True
+        )
+    except Exception as e:
+        await interaction.response.send_message(f"❌ Erreur : `{e}`", ephemeral=True)
+
+
+# ── Slash command /fw_advanced ───────────────────────────────────
+@bot.tree.command(name="fw_advanced", description="Affiche les infos et prix du Firmware ADVANCED")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def fw_advanced(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    try:
+        file = discord.File("banner.png", filename="banner.png")
+
+        embed = discord.Embed(
+            description=(
+                "# GardeDMA | Firmware Advanced\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Features\n"
+                "• Entry-level tournament ready\n"
+                "• Compatible with DMA 75T & 100T\n"
+                "• Works on all motherboards\n"
+                "• All CPUs supported\n"
+                "• Unique builds (no shared)\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Supported Anti-Cheats\n"
+                "BattlEye • EAC • FACEIT • EA\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_PRICE} Pricing\n\n"
+                "**Lifetime — $250**\n"
+                "• 1 month warranty included\n"
+                "• Extended warranty available on request\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"<#{PRODUCT_TICKET_CHANNEL_ID}>  •  <#{PRODUCT_PAYMENT_CHANNEL_ID}>"
+            ),
+            color=EMBED_COLOR
+        )
+        embed.set_image(url="attachment://banner.png")
+        embed.set_footer(text=BRAND_FOOTER)
+
+        await target.send(embed=embed, file=file)
+        await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
+
+    except FileNotFoundError:
+        await interaction.response.send_message(
+            "❌ Le fichier `banner.png` est introuvable. "
+            "Vérifie qu'il est bien à la racine du repo, au même endroit que `bot.py`.",
+            ephemeral=True
+        )
+    except Exception as e:
+        await interaction.response.send_message(f"❌ Erreur : `{e}`", ephemeral=True)
+
+
+# ── Slash command /fw_slotted ────────────────────────────────────
+@bot.tree.command(name="fw_slotted", description="Affiche les infos et prix du Firmware Slotted")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def fw_slotted(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    try:
+        file = discord.File("banner.png", filename="banner.png")
+
+        embed = discord.Embed(
+            description=(
+                "# GardeDMA | Firmware Slotted\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Features\n"
+                "• Compatible with DMA 75T & 100T\n"
+                "• Works on all motherboards\n"
+                "• All CPUs supported (AMD + Intel)\n"
+                "• IOMMU / VT-d required\n"
+                "• Built for high-tier / rotating devices\n"
+                "• Unique builds (no shared)\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Supported Anti-Cheats\n"
+                "Valorant • BattlEye • EAC • FACEIT • EA\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_PRICE} Pricing\n\n"
+                "**Lifetime — $500**\n"
+                "• 3 months warranty included\n"
+                "• Extended warranty available on request\n\n"
+                "**Slots available : 2/5**\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"<#{PRODUCT_TICKET_CHANNEL_ID}>  •  <#{PRODUCT_PAYMENT_CHANNEL_ID}>"
+            ),
+            color=EMBED_COLOR
+        )
+        embed.set_image(url="attachment://banner.png")
+        embed.set_footer(text=BRAND_FOOTER)
+
+        await target.send(embed=embed, file=file)
+        await interaction.response.send_message(f"✅ Message envoyé dans {target.mention} !", ephemeral=True)
+
+    except FileNotFoundError:
+        await interaction.response.send_message(
+            "❌ Le fichier `banner.png` est introuvable. "
+            "Vérifie qu'il est bien à la racine du repo, au même endroit que `bot.py`.",
+            ephemeral=True
+        )
+    except Exception as e:
+        await interaction.response.send_message(f"❌ Erreur : `{e}`", ephemeral=True)
+
+
+# ── Slash command /rdma ──────────────────────────────────────────
+@bot.tree.command(name="rdma", description="Affiche les infos et prix du RDMA Private")
+@app_commands.describe(salon="Salon où envoyer le message (laisser vide = salon actuel)")
+async def rdma(interaction: discord.Interaction, salon: discord.TextChannel = None):
+    if not interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("❌ Tu n'as pas la permission d'utiliser cette commande.", ephemeral=True)
+        return
+
+    target = salon or interaction.channel
+
+    try:
+        file = discord.File("banner.png", filename="banner.png")
+
+        embed = discord.Embed(
+            description=(
+                "# GardeDMA | RDMA Private\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Features\n"
+                "• Private access — trusted users only\n"
+                "• AMD + Intel supported\n"
+                "• Signed Windows driver\n"
+                "• Both PCs must be connected via Ethernet to the same router\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Supported Anti-Cheats\n"
+                "Vanguard • EAC\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_PRICE} Pricing\n\n"
+                "**1 Week — $50**\n"
+                "**1 Month — $125**\n"
+                "**3 Months — $250**\n"
+                "**Lifetime — $399**\n\n"
+                "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n"
+                f"# {EMOJI_INFO} Access\n"
+                "• Not publicly available\n"
+                "• Access granted selectively to trusted users\n"
+                "• Availability may be limited\n\n"
+                f"<#{PRODUCT_TICKET_CHANNEL_ID}>  •  <#{PRODUCT_PAYMENT_CHANNEL_ID}>"
             ),
             color=EMBED_COLOR
         )
